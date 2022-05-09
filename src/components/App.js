@@ -1,27 +1,9 @@
 import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 import { createStore } from "redux";
-
-const initialState = { value: 0, age: 20 };
-
+import holatlar from "../redux/Reducers";
+import { inc, dec } from "../redux/Action.js";
 function App() {
-  const holatlar = (store = initialState, actions) => {
-    switch (actions.type) {
-      case "DECREMENT":
-        return {
-          ...store,
-          value: store.value + 1,
-        };
-      case "INCREMENT":
-        return {
-          ...store,
-          value: store.value - 1,
-        };
-      default:
-        return initialState;
-    }
-  };
-
   const store = createStore(holatlar);
 
   return (
@@ -35,7 +17,7 @@ function App() {
         <div className="btns">
           <button
             onClick={() => {
-              store.dispatch({ type: "INCREMENT" });
+              store.dispatch(inc());
               document.querySelector(".nol").textContent =
                 store.getState().value;
             }}
@@ -46,7 +28,7 @@ function App() {
           </button>
           <button
             onClick={() => {
-              store.dispatch({ type: "DECREMENT" });
+              store.dispatch(dec());
               document.querySelector(".nol").textContent =
                 store.getState().value;
             }}
