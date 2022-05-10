@@ -4,3 +4,6 @@ export const dec = () => {
 export const inc = () => {
   return { type: "INCREMENT" };
 };
+
+
+
